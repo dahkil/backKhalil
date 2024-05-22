@@ -3,6 +3,7 @@ package project.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import project.dto.UserDtoUpdate;
 import project.models.UserEntity;
 import project.models.UserRole;
 import project.repository.RoleRepository;
@@ -19,12 +20,13 @@ public class UserServiceImplementation implements UserServiceInterface{
     @Autowired
     RoleRepository roleRepository ;
     @Override
-    public UserEntity updateUserPut(int id , UserEntity user) {
+    public UserEntity updateUserPut(int id , UserDtoUpdate user) {
         UserEntity usr= userRepository.findById(id).get() ;
         usr.setFirstName(user.getFirstName());
         usr.setLastName(user.getLastName());
         usr.setUsername(user.getUsername());
         usr.setEmail(user.getEmail()) ;
+        if(!user.getPassword().equals(""))
         usr.setPassword(user.getPassword());
         return userRepository.save(usr);
     }
@@ -69,9 +71,10 @@ public class UserServiceImplementation implements UserServiceInterface{
     }
 
 
-
-
-
-
-
+    public UserEntity updateUserImage(int id, String imageName) {
+        UserEntity myUser= getById(id);
+        myUser.setImageName(imageName);
+        userRepository.save(myUser);
+        return  myUser;
+    }
 }

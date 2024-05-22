@@ -41,6 +41,7 @@ public class JWTGenerator {
 	
 	public boolean validateToken(String token) {
 		try {
+			System.out.println(token);
 			Jwts.parserBuilder()
 			.setSigningKey(key)
 			.build()

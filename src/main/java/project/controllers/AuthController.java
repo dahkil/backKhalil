@@ -93,16 +93,17 @@ public class AuthController {
             String token = jwtGenerator.generateToken(authentication);
 
             Optional<UserEntity> userOptional = userRepository.findByUsername(userDetails.getUsername());
+            System.out.println("hoho");
             if (userOptional.isPresent()) {
                 UserEntity user = userOptional.get();
                 AuthResponseDTO authResponseDTO = new AuthResponseDTO(token, user);
+                System.out.println(authResponseDTO.getAccessToken());
                 return new ResponseEntity<>(authResponseDTO, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
             }
 
         } catch (AuthenticationException e) {
-            // Authentication failed, return an error message
             return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
         }
     }

@@ -37,9 +37,8 @@ public class UserEntity {
     private UserRole userRole;
 
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "userEntity")
-    private Image userImage;
+
+    private String ImageName;
 
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
