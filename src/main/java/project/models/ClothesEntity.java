@@ -12,17 +12,16 @@ import javax.persistence.*;
 @Table(name="Clothes")
 public class ClothesEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
 
     @Column (name="Name")
     private String Name ;
-
+private String imageName;
     @Column (name="Description")
     private String Description ;
-
-
-    @JsonIgnore
+    private Category category;
+     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;

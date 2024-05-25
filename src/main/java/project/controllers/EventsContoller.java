@@ -23,7 +23,7 @@ public class EventsContoller {
     EventsRepository eventsRepository ;
 
 
-    @PostMapping("addE/{userId}")
+    @PostMapping("add/{userId}")
 
     public Events AddEvents(@PathVariable int userId, @RequestBody Events events) {
         return eventsServiceInterface.AddEvents(userId, events);
@@ -41,13 +41,13 @@ public class EventsContoller {
         eventsServiceInterface.deleteEvents(id);
     }
 
-    @PutMapping(value = "/updateEvents/{id}")
+    @PutMapping(value = "/update/{id}")
     public Events updateEventsPut(@PathVariable Long id, @RequestBody Events events) {
         return eventsServiceInterface.updateEventsPut(id, events);
 
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/getAll/{userId}")
     public List<Events> getEventsByUserId(@PathVariable int userId) {
         return eventsServiceInterface.getEventsByUserId(userId);
 

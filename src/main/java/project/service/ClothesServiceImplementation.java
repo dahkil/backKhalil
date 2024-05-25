@@ -1,7 +1,9 @@
 package project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import project.models.Category;
 import project.models.ClothesEntity;
 import project.models.UserEntity;
 import project.repository.ClothesRepository;
@@ -29,10 +31,13 @@ public class ClothesServiceImplementation implements ClothesServiceInterface {
     }
 
     @Override
-    public ClothesEntity updateClothesPut(Long id, ClothesEntity clothes) {
+    public ClothesEntity updateClothesPut(Long id,String name,String description,String category,String imageName)  {
         ClothesEntity cls = clothesRepository.findById(id).get();
-        cls.setName(clothes.getName());
-        cls.setDescription(clothes.getDescription());
+        cls.setName(name);
+        cls.setImageName(imageName);
+        cls.setCategory(Category.valueOf(category));
+        cls.setDescription(description);
+
         return clothesRepository.save(cls);
     }
 
@@ -56,8 +61,9 @@ public class ClothesServiceImplementation implements ClothesServiceInterface {
     }
 
     @Override
-    public List<ClothesEntity> getAllClothes() {
-        return clothesRepository.findAll();
+    public List<ClothesEntity> getAllClothes(Long id) {
+
+        return clothesRepository.findByUserId(Math.toIntExact(id));
     }
 
 
@@ -86,6 +92,21 @@ public class ClothesServiceImplementation implements ClothesServiceInterface {
         }
 
     }
+
+    @Override
+    public ResponseEntity<ClothesEntity> addClothes(String name, String description, String category,String imageName, Integer idUser) {
+        ClothesEntity clothes=new ClothesEntity();
+        clothes.setDescription(description);
+        clothes.setCategory(Category.valueOf(category));
+        clothes.setName(name);
+        clothes.setImageName(imageName);
+        Optional<UserEntity>user=  userRepository.findById(idUser);
+        if(user.isPresent())
+        clothes.setUser(user.get());
+        clothesRepository.save(clothes);
+        return ResponseEntity.ok(clothes);
+    }
+
 }
 
 

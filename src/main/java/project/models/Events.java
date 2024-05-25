@@ -13,14 +13,14 @@ import java.util.Date;
 
 public class Events {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
-    private String name ;
-    @Temporal(TemporalType.DATE)
-    private Date creationDate;
-
-
-    @JsonIgnore
+   private int date;
+   private String title;
+   private String color;
+   private int month;
+   private int year;
+ @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;

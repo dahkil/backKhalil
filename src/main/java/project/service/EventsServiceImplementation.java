@@ -51,8 +51,12 @@ public class EventsServiceImplementation implements EventsServiceInterface{
     @Override
     public Events updateEventsPut(Long id, Events events) {
         Events ev = eventsRepository.findById(id).get();
-        ev.setName(events.getName());
-        ev.setCreationDate(ev.getCreationDate());
+        ev.setDate(events.getDate());
+        ev.setTitle(events.getTitle());
+        ev.setMonth(events.getMonth());
+        ev.setColor(events.getColor());
+        ev.setYear(events.getYear());
+
         return eventsRepository.save(ev);
     }
 
