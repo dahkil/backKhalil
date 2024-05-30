@@ -40,7 +40,7 @@ public class ClothesControlles {
         String description = (String) clothes.get("description");
         String category = (String) clothes.get("category");
         Integer idUser= (Integer) clothes.get("id");
-        String path="C:\\Users\\benmo\\OneDrive\\Bureau\\khalil\\Front\\frontKhalil\\src\\assets\\images";
+        String path="C:\\Users\\MSI\\Downloads\\frontKhalil-main\\frontKhalil-main\\src\\assets\\images";
         Files.copy(image.getInputStream(), Paths.get(path+ File.separator+image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         String imageName = image.getOriginalFilename();
         return clothesServiceInterface.addClothes(name,description,category,imageName,idUser);
@@ -61,7 +61,7 @@ public class ClothesControlles {
         String name = (String) clothes.get("name");
         String description = (String) clothes.get("description");
         String category = (String) clothes.get("category");
-        String path="C:\\Users\\benmo\\OneDrive\\Bureau\\khalil\\Front\\frontKhalil\\src\\assets\\images";
+        String path="C:\\Users\\MSI\\Downloads\\frontKhalil-main\\frontKhalil-main\\src\\assets\\images";
         Files.copy(image.getInputStream(), Paths.get(path+ File.separator+image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         String imageName = image.getOriginalFilename();
         return clothesServiceInterface.updateClothesPut(id,name,description,category,imageName);

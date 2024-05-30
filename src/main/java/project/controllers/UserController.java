@@ -32,7 +32,8 @@ public class UserController {
     @PutMapping(value = "/updateUserImage/{id}")
     public UserEntity updateUserImage (@PathVariable int id ,  @RequestParam("imagefile") MultipartFile imagefile) throws IOException {
         System.out.println("hoho");
-        String path="C:\\Users\\benmo\\OneDrive\\Bureau\\khalil\\Front\\frontKhalil\\src\\assets\\images";
+        String path="C:/Users/MSI/Desktop/chick_choice1-main/src/assets/images";
+
         Files.copy(imagefile.getInputStream(), Paths.get(path+ File.separator+imagefile.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
 
         return userServiceImplementation.updateUserImage(id,imagefile.getOriginalFilename()) ;
