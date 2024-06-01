@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 
 public interface tendencyRepository extends JpaRepository<tendencyEntity, Long> {
-    List<tendencyEntity> findByUserId(int userId);
+
 
 }

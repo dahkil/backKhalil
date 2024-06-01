@@ -21,8 +21,5 @@ public class tendencyEntity {
     @Column(name = "Description")
     private String Description;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+
 }

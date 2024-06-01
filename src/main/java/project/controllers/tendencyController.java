@@ -37,9 +37,9 @@ public class tendencyController {
 
         String name = (String) tendency.get("name");
         String description = (String) tendency.get("description");
-        Integer idUser = (Integer) tendency.get("id");
 
-        String path = "C:\\Users\\MSI\\Downloads\\frontKhalil-main\\frontKhalil-main\\src\\assets\\images";
+
+        String path = "C:\\Users\\benmo\\OneDrive\\Bureau\\Khalil1\\frontUser\\frontUser\\src\\assets\\images";
         Files.copy(image.getInputStream(), Paths.get(path + File.separator + image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         String imageName = image.getOriginalFilename();
 
@@ -47,7 +47,7 @@ public class tendencyController {
         newTendency.setName(name);
         newTendency.setDescription(description);
         newTendency.setImageName(imageName);
-        return ResponseEntity.ok(tServiceInterface.Addtendency(idUser, newTendency));
+        return ResponseEntity.ok(tServiceInterface.Addtendency(newTendency));
     }
 
     @DeleteMapping(value = "/delete/{id}")
@@ -63,16 +63,16 @@ public class tendencyController {
 
         String name = (String) tendency.get("name");
         String description = (String) tendency.get("description");
-        String path="C:\\Users\\MSI\\Downloads\\frontKhalil-main\\frontKhalil-main\\src\\assets\\images";
+        String path="C:\\Users\\benmo\\OneDrive\\Bureau\\Khalil1\\frontUser\\frontUser\\src\\assets\\images";
         Files.copy(image.getInputStream(), Paths.get(path+ File.separator+image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         String imageName = image.getOriginalFilename();
         return tServiceInterface.updateTendencyPut(id,name,description,imageName);
 
     }
 
-    @GetMapping("/getAll/{id}")
-    public List<tendencyEntity> getAllTendency(@PathVariable Long id) {
-        return tServiceInterface.getAllTendency(id);
+    @GetMapping("/getAll")
+    public List<tendencyEntity> getAllTendency() {
+        return tServiceInterface.getAllTendency();
 
     }
     @GetMapping("get/{id}")

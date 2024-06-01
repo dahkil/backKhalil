@@ -6,10 +6,10 @@ import project.models.tendencyEntity;
 import java.util.List;
 
 public interface tendencyServiceInterface {
-    tendencyEntity Addtendency(int userId, tendencyEntity tendence);
+    tendencyEntity Addtendency( tendencyEntity tendence);
     void deleteTendency(Long id);
     tendencyEntity updateTendencyPut(Long id , String name, String description,  String imageName) ;
-    List<tendencyEntity> getAllTendency(Long id);
+    List<tendencyEntity> getAllTendency();
     tendencyEntity getTendencyById(Long id);
 
 

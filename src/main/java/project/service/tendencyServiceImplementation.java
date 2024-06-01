@@ -20,8 +20,8 @@ public class tendencyServiceImplementation implements tendencyServiceInterface {
     UserRepository userRepository;
 
     @Override
-    public tendencyEntity Addtendency(int userId, tendencyEntity tendence) {
-        tendence.setUser(userRepository.findById(userId).orElse(null));
+    public tendencyEntity Addtendency( tendencyEntity tendence) {
+
         return tRepository.save(tendence);
     }
     @Override
@@ -40,9 +40,9 @@ public class tendencyServiceImplementation implements tendencyServiceInterface {
     }
 
     @Override
-    public List<tendencyEntity> getAllTendency(Long id) {
+    public List<tendencyEntity> getAllTendency() {
 
-        return tRepository.findByUserId(Math.toIntExact(id));
+        return tRepository.findAll();
     }
 
     @Override
